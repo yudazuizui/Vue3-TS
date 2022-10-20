@@ -9,7 +9,7 @@
     <!-- 2.menu -->
     <div class="menu">
       <el-menu
-        default-active="3"
+        :default-active="defaultActive"
         :collapse="isFold"
         text-color="#b7bdc3"
         active-text-color="#fff"
@@ -36,56 +36,16 @@
             </template>
           </el-sub-menu>
         </template>
-
-        <!-- 1.系统总览 -->
-        <!-- <el-sub-menu>
-          <template #title>
-            <el-icon><Monitor /></el-icon>
-            <span>系统总览</span>
-          </template>
-          <el-menu-item>核心技术</el-menu-item>
-          <el-menu-item>商品统计</el-menu-item>
-        </el-sub-menu> -->
-
-        <!-- 2.系统管理 -->
-        <!-- <el-sub-menu>
-          <template #title>
-            <el-icon><Setting /></el-icon>
-            <span>系统管理</span>
-          </template>
-          <el-menu-item>用户管理</el-menu-item>
-          <el-menu-item>部门管理</el-menu-item>
-          <el-menu-item>菜单管理</el-menu-item>
-          <el-menu-item>角色管理</el-menu-item>
-        </el-sub-menu> -->
-
-        <!-- 3.商品中心 -->
-        <!-- <el-sub-menu>
-          <template #title>
-            <el-icon><ShoppingBag /></el-icon>
-            <span>商品中心</span>
-          </template>
-          <el-menu-item>商品类别</el-menu-item>
-          <el-menu-item>商品信息</el-menu-item>
-        </el-sub-menu> -->
-
-        <!-- 4.随便聊聊 -->
-        <!-- <el-sub-menu>
-          <template #title>
-            <el-icon><Monitor /></el-icon>
-            <span>随便聊聊</span>
-          </template>
-          <el-menu-item>你的故事</el-menu-item>
-          <el-menu-item>故事列表</el-menu-item>
-        </el-sub-menu> -->
       </el-menu>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import useLoginStore from '@/store/login/login'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { mapPathToMenu } from '@/utils/map-menus'
 
 // 0.定义props
 defineProps({
@@ -105,6 +65,13 @@ function handleItemClick(item: any) {
   const url = item.url
   router.push(url)
 }
+
+// 3.ElMenu的默认菜单
+const route = useRoute()
+const defaultActive = computed(() => {
+  const pathMenu = mapPathToMenu(route.path, userMenus)
+  return pathMenu.id + ''
+})
 </script>
 <style lang="less" scoped>
 .main-menu {
