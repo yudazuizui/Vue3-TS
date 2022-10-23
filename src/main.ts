@@ -13,4 +13,4 @@ app.use(store)
 app.use(router)
 app.mount('#app')
 
-console.log('Hello World')
+console.log('Hello Coderwhy')
