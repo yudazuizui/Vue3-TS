@@ -12,3 +12,5 @@ app.use(icons)
 app.use(store)
 app.use(router)
 app.mount('#app')
+
+console.log('Hello World')
