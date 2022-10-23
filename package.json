@@ -12,7 +12,9 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "axios": "^1.1.2",
+    "countup.js": "^2.3.2",
     "dayjs": "^1.11.5",
+    "echarts": "^5.4.0",
     "element-plus": "^2.2.18",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.23",
